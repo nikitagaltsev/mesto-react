@@ -1,0 +1,15 @@
+.footer {
+  width: calc(100% - 400px);
+  margin: 0 auto;
+  min-height: 50px;
+  color: white;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #A5A5A5;
+}
+
+@media (max-width: 980px) {
+  .footer {
+    width: 90%;
+  }
+}
