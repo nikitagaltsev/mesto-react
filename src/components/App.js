@@ -13,6 +13,11 @@ function App() {
     false
   );
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState();
+
+  function handleCardClick(cardId) {
+    setSelectedCard(cardId)
+  }
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -26,14 +31,11 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleImageClick() {
-    document.querySelector(".popup_type_image").classList.add("popup_is-opened");
-  }
-
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setSelectedCard('');
   }
 
   return (
@@ -44,7 +46,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onEditAvatar={handleEditAvatarClick}
           onAddPlace={handleAddPlaceClick}
-          onImageClick={handleImageClick}
+          onCardClick={handleCardClick}
         />
         
         <Footer />
@@ -118,7 +120,7 @@ function App() {
 
         {/* <PopupWithForm /> */}
 
-        <ImagePopup />
+        <ImagePopup  isOpen={selectedCard ? 'popup_is-opened' : ''} card={selectedCard} onClose={closeAllPopups}/>
       </div>
     </div>
   );
