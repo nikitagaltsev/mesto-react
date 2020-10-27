@@ -1,23 +1,18 @@
 import React from "react";
-import api from "../utils/Api.js";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
-  const [cards, setCards] = React.useState([]);
+  /* Context */
+  const currentUser = React.useContext(CurrentUserContext);
 
-  React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([user, cards]) => {
-        setUserName(user.name);
-        setUserDescription(user.about);
-        setUserAvatar(user.avatar);
-        setCards(cards.slice(0, 5));
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  if (!currentUser) {
+    return (
+      <section>
+        <h1 className="profile__loading">Loading...</h1>
+      </section>
+    )
+  }
 
   return (
     <main>
@@ -26,13 +21,13 @@ function Main(props) {
           <div
             onClick={props.onEditAvatar}
             className="user-info__photo"
-            style={{ backgroundImage: `url(${userAvatar})` }}
+            style={{ backgroundImage: `url(${currentUser.avatar})` }}
           >
             {" "}
           </div>{" "}
           <div className="user-info__data">
-            <h1 className="user-info__name"> {userName} </h1>{" "}
-            <p className="user-info__job"> {userDescription} </p>{" "}
+            <h1 className="user-info__name"> {currentUser.name} </h1>{" "}
+            <p className="user-info__job"> {currentUser.about} </p>{" "}
             <button
               onClick={props.onEditProfile}
               className="button user-info__edit-button"
@@ -52,9 +47,9 @@ function Main(props) {
       </div>
 
       <ul className="places-list root__section">
-        {cards.map((item, index) => 
-          <Card cardData={item} key={index} onCardClick={props.onCardClick}/>
-        )}
+        {props.cards.map((item, index) => (
+          <Card cardData={item} key={index} onCardClick={props.onCardClick} />
+        ))}
       </ul>
     </main>
   );

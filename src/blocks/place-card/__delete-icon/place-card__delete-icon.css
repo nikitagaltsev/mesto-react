@@ -10,3 +10,11 @@
   cursor: pointer;
   display: none;
 }
+
+.card__delete-button_visible {
+  display: block;
+}
+
+.card__delete-button_hidden {
+  display: none;
+}
