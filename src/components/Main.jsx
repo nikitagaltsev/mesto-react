@@ -11,7 +11,7 @@ function Main(props) {
       <section>
         <h1 className="profile__loading">Loading...</h1>
       </section>
-    )
+    );
   }
 
   return (
@@ -48,7 +48,13 @@ function Main(props) {
 
       <ul className="places-list root__section">
         {props.cards.map((item, index) => (
-          <Card cardData={item} key={index} onCardClick={props.onCardClick} onCardLike={props.onCardLike}/>
+          <Card
+            cardData={item}
+            key={index}
+            onCardClick={props.onCardClick}
+            onCardLike={props.onCardLike}
+            onDeleteClick={props.onDeleteClick}
+          />
         ))}
       </ul>
     </main>

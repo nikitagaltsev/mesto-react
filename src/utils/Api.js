@@ -18,15 +18,13 @@ class Api {
     .then(this._checkError);
   }
 
-  addCard(name, link) {
-    return fetch(`${this.baseUrl}/cards`, {
-      method: 'POST',
+  addCard(card) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
       headers: this._headers,
-      body: JSON.stringify({
-        name,
-        link
-      })
+      body: JSON.stringify(card)
     })
+    .then(this._checkError);
   }
 
   deleteCard(cardId) {
@@ -34,6 +32,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers,
     })
+    .then(this._checkError);
   }
 
   getUserInfo() {
@@ -43,15 +42,13 @@ class Api {
     .then(this._checkError);
   }
 
-  editUserInfo(name, about) {
+  editUserInfo(info) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({
-        name,
-        about
-      })
+      body: JSON.stringify(info)
     })
+    .then(this._checkError);
   }
 
   changeLikeCardStatus(id, isLiked) {
