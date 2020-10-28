@@ -31,7 +31,7 @@ function App() {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {
         setCurrentUser(user);
-        setCards(cards);
+        setCards(cards.slice(0, 10));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -53,6 +53,17 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  function handleCardLike(card) {
+    console.log(card.likes)
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    api.changeLikeCardStatus(card._id, !isLiked)
+    .then(newCard => {
+      const newCards = cards.map(c => c._id === card._id ? newCard : c);
+      setCards(newCards)
+    })
+    .catch(err => console.log(err));;
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -70,6 +81,7 @@ function App() {
             onEditAvatar={handleEditAvatarClick}
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
+            onCardLike={handleCardLike}
             cards={cards}
           />
 

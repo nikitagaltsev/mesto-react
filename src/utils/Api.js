@@ -1,7 +1,7 @@
 class Api {
   constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
   }
 
   _checkError(res) {
@@ -12,8 +12,8 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cards`, {
-      headers: this.headers
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers
     })
     .then(this._checkError);
   }
@@ -21,7 +21,7 @@ class Api {
   addCard(name, link) {
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
-      headers: this.headers,
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link
@@ -30,31 +30,46 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: this._headers,
     })
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers
     })
     .then(this._checkError);
   }
 
   editUserInfo(name, about) {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this.headers,
+      headers: this._headers,
       body: JSON.stringify({
         name,
         about
       })
     })
   }
-}
 
+  changeLikeCardStatus(id, isLiked) {
+    if (isLiked) {
+      return fetch(`${this._baseUrl}/cards/like/${id}`, {
+        method: "PUT",
+        headers: this._headers
+        })
+        .then(this._checkError);
+    } else {
+      return fetch(`${this._baseUrl}/cards/like/${id}`, {
+        method: "DELETE",
+        headers: this._headers
+        })
+        .then(this._checkError);
+    }
+  }
+}
 
 const api = new Api({
   baseUrl: 'https://nomoreparties.co/cohort11',
