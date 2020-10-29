@@ -30,6 +30,7 @@ function EditProfilePopup(props) {
     });
   } 
 
+
 return (
     <PopupWithForm
       isOpen={props.isOpen ? "popup_is-opened" : ""}
@@ -76,5 +77,6 @@ return (
     </PopupWithForm>
   );
 }
+
 
 export default EditProfilePopup;

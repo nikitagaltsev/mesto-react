@@ -1,5 +1,6 @@
 .places-list {
   margin-bottom: 40px;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, 282px);
   grid-gap: 18px 18px;

@@ -2,6 +2,7 @@ import React from "react";
 import closeBtn from "../images/close.svg";
 
 function PopupWithForm(props) {
+
   return (
     <div className={`popup popup_type_${props.name} ${props.isOpen}`}>
       <div className="popup__content">

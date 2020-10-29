@@ -20,12 +20,11 @@ function App() {
   );
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-
-  //part two
   const [currentUser, setCurrentUser] = React.useState();
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
   const [isSaving, setIsSaving] = React.useState(false);
+  
   /** Lifecycle methods */
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
