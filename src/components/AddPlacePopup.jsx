@@ -23,9 +23,11 @@ function AddPlacePopup(props) {
     <PopupWithForm
       isOpen={props.isOpen ? "popup_is-opened" : ""}
       onClose={props.onClose}
+      onSubmit={handleSubmit}
       name="place"
       title="Новое место"
     >
+    <h2 style={{color: 'red'}}>Возможность добавлять карточки была заблокирована сервером :(</h2>
       <div className="input-container ">
         <input
           id="place"
@@ -35,6 +37,8 @@ function AddPlacePopup(props) {
           maxLength="30"
           className="popup__input popup__input_type_name"
           placeholder="Название"
+          onChange={handleNameChange}
+          disabled
           required
         />
         <span id="error-place" className="error-message"></span>
@@ -46,6 +50,8 @@ function AddPlacePopup(props) {
           name="link"
           className="popup__input popup__input_type_link-url"
           placeholder="Ссылка на картинку"
+          onChange={handleLinkChange}
+          disabled
           required
         />
         <span id="error-link" className="error-message"></span>

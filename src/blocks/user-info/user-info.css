@@ -13,10 +13,25 @@
   width: 100%;
 }
 
+/* 
 .profile__loading {
   font-family: 'Roboto', serif;
   color: white;
   text-align: center;
+} */
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.profile__preloader {
+  margin: 30px auto;
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-image: url(../../images/45.gif);
 }
 
 @media screen and (max-width: 980px) {

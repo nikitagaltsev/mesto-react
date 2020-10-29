@@ -8,8 +8,8 @@ function Main(props) {
 
   if (!currentUser) {
     return (
-      <section>
-        <h1 className="profile__loading">Loading...</h1>
+      <section className="loading">
+        <span className="profile__preloader"></span>
       </section>
     );
   }
