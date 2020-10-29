@@ -18,13 +18,20 @@ function Main(props) {
     <main>
       <div className="profile root__section">
         <div className="user-info">
-          <div
-            onClick={props.onEditAvatar}
-            className="user-info__photo"
-            style={{ backgroundImage: `url(${currentUser.avatar})` }}
-          >
-            {" "}
-          </div>{" "}
+
+          <div className="profile__avatar-box">
+            <img
+              src={currentUser.avatar}
+              alt="Фото профиля"
+              className="profile__avatar button"
+            />
+            <button
+              className="profile__avatar-btn button"
+              type="button"
+              onClick={props.onEditAvatar}
+            ></button>
+          </div>
+
           <div className="user-info__data">
             <h1 className="user-info__name"> {currentUser.name} </h1>{" "}
             <p className="user-info__job"> {currentUser.about} </p>{" "}

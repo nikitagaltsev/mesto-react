@@ -1,0 +1,28 @@
+.profile__avatar-box {
+  position: relative;
+  margin: 0;
+}
+
+.profile__avatar-box::after {
+  height: 100%;
+  width: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: black;
+  border-radius: 50%;
+  opacity: 0;
+  transition: .3s;
+}
+
+.profile__avatar-box:hover::after {
+  opacity: .6;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__avatar {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,19 @@
+.profile__edit-btn {
+  min-width: 24px;
+  height: 24px;
+  background: url(../../../images/profile-edit-btn.svg), black;
+  border: 1px solid #FFFFFF;
+  margin-left: 20px;
+}
+
+.profile__edit-btn:hover {
+  background: url(../../../images/profile-edit-btn-hover.svg), black;
+}
+
+@media screen and (max-width: 768px){
+  .profile__edit-btn {
+    margin-left: 8px;
+    min-width: 18px;
+    height: 18px;
+  }
+}

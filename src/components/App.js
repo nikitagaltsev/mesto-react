@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from "./ImagePopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ClosablePopup from "./ClosablePopup";
@@ -26,13 +26,13 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
   const [isSaving, setIsSaving] = React.useState(false);
-
+  const regexp = /(\W|^)yandex(\W|$)/
   /** Lifecycle methods */
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([user, cards]) => {
         setCurrentUser(user);
-        setCards(cards.slice(0, 10));
+        setCards(cards.slice(0, 100));
       })
       .catch((err) => console.log(err));
   }, []);
@@ -83,6 +83,15 @@ function App() {
     api
       .editUserInfo(user)
       .then((user) => setCurrentUser(user))
+      .catch((err) => console.log(err))
+      .finally(() => closeAllPopups());
+  }
+
+  function handleUpdateAvatar(avatar) {
+    setIsSaving(true);
+    api
+      .patchAvatar(avatar)
+      .then((avatar) => setCurrentUser(avatar))
       .catch((err) => console.log(err))
       .finally(() => closeAllPopups());
   }
@@ -147,7 +156,18 @@ function App() {
             ""
           )}
 
-          {/* <PopupWithForm /> */}
+          {isEditAvatarPopupOpen ? (
+            <ClosablePopup>
+              <EditAvatarPopup
+                isOpen={isEditAvatarPopupOpen}
+                onClose={closeAllPopups}
+                onUpdateAvatar={handleUpdateAvatar}
+                isSaving={isSaving}
+              />
+            </ClosablePopup>
+          ) : (
+            ""
+          )}
 
           {selectedCard.link ? (
             <ClosablePopup>

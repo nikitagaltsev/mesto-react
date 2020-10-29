@@ -1,6 +1,29 @@
+@import url(./__avatar-box/profile__avatar-box.css);
+@import url(./__avatar/profile__avatar.css);
+@import url(./__add-btn/profile__add-btn.css);
+@import url(./__edit-btn/profile__edit-btn.css);
+@import url(./__avatar-btn/profile__avatar-btn.css);
+
 .profile {
-  min-height: 300px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
+@media screen and (max-width: 768px){
+  .profile {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 40px 20px 36px;
+  }
+}
