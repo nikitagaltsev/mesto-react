@@ -26,7 +26,6 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [deletedCard, setDeletedCard] = React.useState({});
   const [isSaving, setIsSaving] = React.useState(false);
-  const regexp = /(\W|^)yandex(\W|$)/
   /** Lifecycle methods */
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
