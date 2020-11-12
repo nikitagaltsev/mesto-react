@@ -20,7 +20,7 @@
 * CSS
 * Flex
 * Grid Layout
-* Отзывчивая и адаптивная вёрстка.
+* Отзывчивая и адаптивная вёрстка
 * Nested BEM
 * Babel
 * WebPack
